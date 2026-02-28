@@ -1,78 +1,57 @@
-# ☀️ Solar Energy Generation Prediction AI
+# ☀️ Solar Energy Generation Prediction System (AI + GUI)
 
 ![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
+![Library](https://img.shields.io/badge/Library-Tkinter-green)
 ![Library](https://img.shields.io/badge/Library-Scikit--Learn-orange)
 ![Status](https://img.shields.io/badge/Status-Completed-green)
+![License](https://img.shields.io/badge/License-MIT-yellow)
 
 ## 📌 Project Overview
-This project focuses on predicting **Solar Power Generation** using machine learning techniques. By analyzing meteorological data (Temperature, Irradiation) and historical power generation logs, the model predicts the **DC Power Output** (kW) of a solar power plant.
+This project is an advanced AI-powered system designed to predict **Solar Power Generation** based on meteorological data. It features a **Modern Dark-Themed GUI** built with Python's Tkinter, allowing users to train the model, visualize results, and make real-time predictions without writing code.
 
-This work was developed as part of the **ST5000CEM: Introduction to AI** module at **Softwarica College (In collaboration with Coventry University)**.
+This work was developed as part of the **ST5000CEM: Introduction to AI** module at **Softwarica College (Coventry University)**.
 
-### 🎯 Key Objectives
-- To solve the problem of solar energy intermittency and grid instability.
-- To compare a baseline model (**Linear Regression**) against a non-linear ensemble model (**Random Forest**).
-- To optimize the model using **GridSearchCV** and **Cross-Validation**.
+### 🎯 Key Features
+- **Modern GUI:** A clean, dark-themed user interface for easy interaction.
+- **One-Click Training:** Automatically merges datasets, preprocesses data, and trains a **Random Forest Regressor**.
+- **Model Persistence:** Saves the trained model (`solar_model.pkl`) for future use.
+- **Interactive Visualizations:** View Actual vs. Predicted plots, Feature Importance, and Error Distribution histograms directly from the app.
+- **Real-Time Prediction:** Input custom weather parameters (Temperature, Irradiation, Hour) to get an instant power generation forecast (kW).
 
 ---
 
 ## 📂 Dataset
-The dataset used in this project is sourced from the [Kaggle Solar Power Generation Data](https://www.kaggle.com/datasets/anikannal/solar-power-generation-data).
-
-It consists of two files that were merged based on timestamps:
-1.  **Plant_1_Generation_Data.csv**: Contains `DC_POWER` (Target) and `AC_POWER`.
+The system requires two CSV files from the [Kaggle Solar Power Generation Data](https://www.kaggle.com/datasets/anikannal/solar-power-generation-data):
+1.  **Plant_1_Generation_Data.csv**: Contains `DC_POWER` (Target) and timestamps.
 2.  **Plant_1_Weather_Sensor_Data.csv**: Contains `AMBIENT_TEMPERATURE`, `MODULE_TEMPERATURE`, and `IRRADIATION`.
 
-**Key Features Used:**
-- `IRRADIATION`: Solar irradiance (kW/m²).
-- `MODULE_TEMPERATURE`: Temperature of the PV module (°C).
-- `AMBIENT_TEMPERATURE`: Air temperature (°C).
-- `Hour`: Time of day (Derived feature).
+**Preprocessing:**
+- The app automatically merges these files based on the `DATE_TIME` column.
+- It extracts the `Hour` feature to capture daily solar cycles.
 
 ---
 
 ## 🛠️ Methodology & Algorithms
 
-### 1. Data Preprocessing
-- **Merging:** Inner join of Generation and Weather datasets on `DATE_TIME`.
-- **Feature Engineering:** Extracted `Hour` from timestamps to capture daily cycles.
-- **Cleaning:** Dropped redundant columns (`PLANT_ID`, `SOURCE_KEY`).
-- **Scaling:** Applied `StandardScaler` for the Linear Regression baseline.
+### 1. The Algorithm
+- **Random Forest Regressor:** Selected for its ability to handle non-linear relationships (e.g., efficiency drop at high temperatures).
+- **Comparison:** Outperformed Linear Regression (Baseline) in our tests.
 
-### 2. Models Implemented
-- **Linear Regression (Baseline):** Used to establish a benchmark performance.
-- **Random Forest Regressor (Optimized):** An ensemble learning method chosen to handle the non-linear relationship between temperature and power generation efficiency.
-
-### 3. Hyperparameter Tuning
-Used **GridSearchCV** with **3-Fold Cross-Validation** to tune:
-- `n_estimators`: [50, 100]
-- `max_depth`: [10, 20, None]
-- `min_samples_split`: [2, 5]
+### 2. Hyperparameter Tuning
+Optimized via **GridSearchCV** with **3-Fold Cross-Validation**:
+- `n_estimators`: 50
+- `max_depth`: 20
+- `min_samples_split`: 5
 
 ---
 
-## 📊 Results & Evaluation
-
-The models were evaluated using **Root Mean Squared Error (RMSE)** and **R-Squared ($R^2$)**.
-
-| Model | RMSE (kW) | R² Score |
-| :--- | :--- | :--- |
-| **Linear Regression** | 567.00 | 0.9801 |
-| **Random Forest (Optimized)** | **470.54** | **0.9863** |
-
-**Key Findings:**
-- The **Random Forest** model outperformed the Linear Regression baseline, reducing the error (RMSE) by nearly **100 kW**.
-- **Feature Importance Analysis** revealed that `IRRADIATION` is the most critical predictor, followed by `MODULE_TEMPERATURE`.
-
----
-
-## 🚀 How to Run the Project
+## 🚀 Installation & Usage
 
 ### Prerequisites
-Ensure you have Python installed. Install the required libraries:
+Ensure you have Python installed. Install the required dependencies:
 
 ```bash
-pip install pandas numpy matplotlib seaborn scikit-learn
+pip install pandas numpy matplotlib seaborn scikit-learn joblib
 ```
 
 Steps
@@ -86,14 +65,18 @@ cd Solar-Prediction-AI
 ```
 Run the main script:
 ```bash
-python solarprediction.py
+python solar-prediction-GUI.py
 ```
-📈 Visualizations
-(These plots are generated when running the code)
+## 📊 Performance Results
 
-Actual vs. Predicted: Shows how closely the model tracks real power generation.
-Feature Importance: Displays which weather factors impact generation the most.
-Error Distribution: A histogram showing the spread of prediction errors.
+The model was evaluated using **Root Mean Squared Error (RMSE)** and **R-Squared ($R^2$)**.
+
+| Metric | Value |
+| :--- | :--- |
+| **Root Mean Squared Error (RMSE)** | ~470.54 kW |
+| **R-Squared ($R^2$) Score** | 0.9863 |
+
+> **Note:** Results may vary slightly depending on the random seed during training.
 
 👤 Author
 
@@ -101,3 +84,4 @@ Bivek
 
 📜 License
 This project is open-source and available under the MIT License.
+
