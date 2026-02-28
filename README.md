@@ -7,7 +7,7 @@
 ## 📌 Project Overview
 This project focuses on predicting **Solar Power Generation** using machine learning techniques. By analyzing meteorological data (Temperature, Irradiation) and historical power generation logs, the model predicts the **DC Power Output** (kW) of a solar power plant.
 
-This work was developed as part of the **ST5000CEM: Introduction to AI** module at **Softwarica College (Coventry University)**.
+This work was developed as part of the **ST5000CEM: Introduction to AI** module at **Softwarica College (In collaboration with Coventry University)**.
 
 ### 🎯 Key Objectives
 - To solve the problem of solar energy intermittency and grid instability.
@@ -96,9 +96,8 @@ Feature Importance: Displays which weather factors impact generation the most.
 Error Distribution: A histogram showing the spread of prediction errors.
 
 👤 Author
+
 Bivek
-Softwarica College of IT & E-Commerce
-(In collaboration with Coventry University)
 
 📜 License
 This project is open-source and available under the MIT License.
