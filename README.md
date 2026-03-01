@@ -78,10 +78,8 @@ The model was evaluated using **Root Mean Squared Error (RMSE)** and **R-Squared
 
 > **Note:** Results may vary slightly depending on the random seed during training.
 
-👤 Author
-
-Bivek
+👤 Author - Bivek Thapa
+🪪 CU ID - 15938381
 
 📜 License
 This project is open-source and available under the MIT License.
-
